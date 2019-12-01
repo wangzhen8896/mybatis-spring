@@ -71,7 +71,7 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
   @Override
   protected void checkDaoConfig() {
     super.checkDaoConfig();
-
+    // 父类实现了InitializingBean，Spring在对象初始化之后，会回调afterPropertiesSet
     notNull(this.mapperInterface, "Property 'mapperInterface' is required");
 
     Configuration configuration = getSqlSession().getConfiguration();

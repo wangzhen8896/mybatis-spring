@@ -45,7 +45,7 @@ import java.util.Set;
  *
  * @author Hunter Presnall
  * @author Eduardo Macarron
- * 
+ *
  * @see MapperFactoryBean
  * @since 1.2.0
  */
@@ -192,6 +192,10 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 
   private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
     GenericBeanDefinition definition;
+    /**
+     * 循环注册所有的Mapper的BeanDefinition对象, 设置BeanClass为MapperFactoryBean，
+     * MapperFactoryBean用来生成Mapper的代理对象，注册到Spring IOC容器中，实现业务中的自动注入Mapper
+     */
     for (BeanDefinitionHolder holder : beanDefinitions) {
       definition = (GenericBeanDefinition) holder.getBeanDefinition();
       String beanClassName = definition.getBeanClassName();

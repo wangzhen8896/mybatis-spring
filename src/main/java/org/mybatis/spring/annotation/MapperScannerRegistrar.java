@@ -53,7 +53,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 
   /**
    * {@inheritDoc}
-   * 
+   *
    * @deprecated Since 2.0.2, this method not used never.
    */
   @Override
@@ -125,7 +125,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
     }
 
     builder.addPropertyValue("basePackage", StringUtils.collectionToCommaDelimitedString(basePackages));
-
+    //将MapperScan注解中的配置信息，注册为MapperScannerConfigurer的BeanDefinition，依靠Spring beanDefinition的后置处理器回调处理后续
     registry.registerBeanDefinition(beanName, builder.getBeanDefinition());
 
   }
@@ -136,7 +136,7 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 
   /**
    * A {@link MapperScannerRegistrar} for {@link MapperScans}.
-   * 
+   *
    * @since 2.0.0
    */
   static class RepeatingRegistrar extends MapperScannerRegistrar {
